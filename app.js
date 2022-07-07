@@ -1,13 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const router = require("./routes/bookRoutes");
 
 const app = express();
 
 //middlewares
-
-app.use("/", (req, res, next) => {
-  res.send("this is our starting app");
-});
+app.use("/books", router);
 mongoose
   .connect("mongodb://localhost:27017/BookStore")
   .then(() => console.log("Connected to Database"))
