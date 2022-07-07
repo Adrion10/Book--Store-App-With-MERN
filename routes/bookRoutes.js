@@ -1,18 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Book = require("../model/BookModel");
+const { getAllBooks, addBook } = require("../controllers/bookController");
 
-router.get("/", async (req, res, next) => {
-  //This route will provide all of the book
-  let books;
-  try {
-    books = await Book.find();
-  } catch (err) {
-    console.log(err);
-  }
-  if (!books) {
-    return res.status(404).json({ message: "No produucts found" });
-  }
-  return res.status(200).json({ books });
-});
+router.get("/", getAllBooks);
+router.post("/", addBook);
+
 module.exports = router;
